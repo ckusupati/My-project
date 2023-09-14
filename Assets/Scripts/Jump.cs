@@ -1,19 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+
 
 using UnityEngine;
 public class Jump : MonoBehaviour
 {
     public Rigidbody2D rb;
-    public float jumpAmount = 35;
+    public float buttonTime = 0.3f;
+    public float jumpAmount = 20;
     public float gravityScale = 10;
     public float fallingGravityScale = 40;
-    void Update()
+    float jumpTime;
+    bool jumping;
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            rb.AddForce(Vector2.up * jumpAmount, ForceMode2D.Impulse);
+            jumping = true;
+            jumpTime = 0;
+        }
+        if (jumping)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpAmount);
+            jumpTime += Time.deltaTime;
+        }
+        if (Input.GetKeyUp(KeyCode.Space) | jumpTime > buttonTime)
+        {
+            jumping = false;
         }
         if (rb.velocity.y >= 0)
         {
@@ -23,5 +36,6 @@ public class Jump : MonoBehaviour
         {
             rb.gravityScale = fallingGravityScale;
         }
+
     }
 }
