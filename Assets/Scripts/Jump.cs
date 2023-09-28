@@ -89,7 +89,7 @@ public class Jump : MonoBehaviour
 
     void speedCheck()
     {
-        if (UnityEngine.Mathf.Pow(rb.velocity.x, 2) < 0.001 && UnityEngine.Mathf.Pow(rb.velocity.y, 2) < 0.001)
+        if (UnityEngine.Mathf.Pow(rb.velocity.x, 2) < 0.001 && UnityEngine.Mathf.Pow(rb.velocity.y, 2) < 0.001 && boostTimer <= 0)
         {
             SceneManager.LoadScene(Respawn);
         }
