@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class CameraBehavior : MonoBehaviour
 {
+
+    public Transform followTransform;
+
+
     // Update is called once per frame
-    public Transform player = null; 
-    public float cameraHeight = 20.0f; 
-    private Transform cam = null; 
-    public void Start() 
-    { 
-        cam = transform; 
-    }
-    public void Update() 
-    { 
-        Vector3 pos = player.position; pos.y = cameraHeight; cam.position = pos; 
+    void FixedUpdate()
+    {
+        this.transform.position = new Vector3(followTransform.position.x, followTransform.position.y, this.transform.position.z);
+
+
     }
 }
